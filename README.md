@@ -3,7 +3,9 @@
 
 
 
-Sobre o Projeto O Lumina Concept é um projeto conceitual completo que une uma identidade visual marcante a uma experiência digital envolvente. Muito mais do que uma interface moderna, o projeto contempla uma arquitetura robusta no backend, construída para um ecossistema de e-commerce com processamento de pagamentos e segurança de ponta.
+Sobre o Projeto:
+
+O Lumina Concept é um projeto conceitual completo que une uma identidade visual marcante a uma experiência digital envolvente. Muito mais do que uma interface moderna, o projeto contempla uma arquitetura robusta no backend, construída para um ecossistema de e-commerce com processamento de pagamentos e segurança de ponta.
 
 O Desafio e a Solução O foco foi criar uma aplicação ponta a ponta (Full-stack/API) onde o design limpo do frontend se conectasse a uma API RESTful de alta performance. O backend foi desenvolvido focado em escalabilidade, utilizando as melhores práticas de mercado para garantir autenticação segura de usuários e integração direta com gateways de pagamento externos.
 
