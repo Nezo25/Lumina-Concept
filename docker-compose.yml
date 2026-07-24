@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: ecommerce_db
+    environment:
+      - MYSQL_ROOT_PASSWORD=En648213!
+      - MYSQL_DATABASE=ecommerce_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ecommerce_api
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      # Sobrescreve as variáveis do application.properties para apontar para o container 'db'
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/ecommerce_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=En648213!
+      
+      # Tokens de Integração (Pode ser sobrescrito localmente via arquivo .env se desejar)
+      - MERCADOPAGO_ACCESS_TOKEN=${MERCADOPAGO_ACCESS_TOKEN:-TEST-2477117071084849-072311-94f727e82f001fe44d0b606cbe98173b-2955925901}
+      - BLING_ACCESS_TOKEN=${BLING_ACCESS_TOKEN:-}
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
