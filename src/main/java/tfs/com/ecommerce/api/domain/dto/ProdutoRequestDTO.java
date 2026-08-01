@@ -24,6 +24,18 @@ public record ProdutoRequestDTO(
         
         String cor,
 
+        String sku,
+
+        @PositiveOrZero(message = "O preço de custo não pode ser negativo")
+        BigDecimal precoCusto,
+
+        @PositiveOrZero(message = "O alerta mínimo não pode ser negativo")
+        Integer alertaMinimo,
+
+        String marca,
+        String modeloDispositivo,
+        String categoriaPeca,
+
         @jakarta.validation.constraints.Size(max = 2000, message = "A URL da imagem não pode exceder 2000 caracteres")
         String imagemUrl
 ) {
